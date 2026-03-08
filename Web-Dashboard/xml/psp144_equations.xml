@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psp144_equations>
+  <equation id="eq_3_10" latex="P(correct) = \Phi\left(\frac{d'}{\sqrt{2}}\right)" units="probability"/>
+  <equation id="eq_3_6" latex="PLV_{corr}(f) = \left| \frac{1}{T} \sum_t e^{i(\phi_A(t,f) - \phi_B(t,f) - \Delta\tau(f))} \right|" units="dimensionless"/>
+  <!-- ... -->
+</psp144_equations>
