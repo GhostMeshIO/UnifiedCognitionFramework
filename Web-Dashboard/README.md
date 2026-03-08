@@ -3,10 +3,10 @@
 **Part of the [Unified Cognition Framework](https://github.com/GhostMeshIO/UnifiedCognitionFramework)**  
 *Hyper-Correlation Intelligence Interface*
 
-> **Current Status:** v1.5 – Empirically hardened, dimensionally consistent, ethically bounded.  
-> **Next Release:** v2.0 – Quantum‑Enhanced Cognition Manifold (D⁴‑QNVM) with self‑healing XML/CSV architecture and real‑time environmental forcing.
+> **Current Status:** v2.0 – Quantum‑Enhanced Cognition Manifold (D⁴‑QNVM) with self‑healing XML/CSV architecture and real‑time environmental forcing.  
+> **Previous Version:** v1.5 – Empirically hardened, dimensionally consistent, ethically bounded.
 
-The Web Dashboard is the primary real‑time visualization and control interface for the **Neuro‑Quantum Validation Protocol (NQVP‑144)**. It translates the dense theoretical constructs of the [Psychics Protocol Framework](docs/The%20Psychics%20Protocol%20Framework%20v1.5%20(PSP-144_NQVP-144).md) into a live operational console. Here you can monitor the D³ Triadic State Space (Precision, Boundary, Temporal), observe the Ghost Mesh P2P network, query a constellation of LLMs, and explore intelligence modules – all within a cosmic‑dark aesthetic driven by reactive shaders and autonomous swarm animations.
+The Web Dashboard is the primary real‑time visualization and control interface for the **Neuro‑Quantum Validation Protocol (NQVP‑144)**. It translates the dense theoretical constructs of the [Psychics Protocol Framework](docs/The%20Psychics%20Protocol%20Framework%20v1.5%20(PSP-144_NQVP-144).md) into a live operational console. Here you can monitor the D⁴ Triadic State Space (Precision, Boundary, Temporal, Autonomic), observe the Ghost Mesh P2P network, query a constellation of LLMs, and explore intelligence modules – all within a cosmic‑dark aesthetic driven by reactive shaders and autonomous swarm animations.
 
 ---
 
@@ -14,12 +14,12 @@ The Web Dashboard is the primary real‑time visualization and control interface
 
 | # | Directive | Implementation |
 |---|-----------|----------------|
-| 1 | **D³ Triadic Live Polytope** | Three animated panels show `𝒫 Precision`, `ℬ Boundary`, and `𝒯 Temporal` with live values, percentage bars, range markers, and live sparkline charts. A canvas (`#polytopeCanvas`) visualizes the Coherence Polytope health (`H_POLYTOPE`), mesh coherence, and spectral radius. |
-| 2 | **Ghost Swarm JS Engine** | `ghost-mesh.js` renders an autonomous P2P node swarm in the background. Node colors (cyan/purple) and movement are influenced by D³ values; mouse interaction repels nodes, simulating a living mesh. |
+| 1 | **D⁴ Triadic Live Polytope** | Three animated panels show `𝒫 Precision`, `ℬ Boundary`, and `𝒯 Temporal` with live values, percentage bars, range markers, and live sparkline charts. A canvas (`#polytopeCanvas`) visualizes the Coherence Polytope health (`H_POLYTOPE`), mesh coherence, and spectral radius. |
+| 2 | **Ghost Swarm JS Engine** | `ghost-mesh.js` renders an autonomous P2P node swarm in the background. Node colors (cyan/purple) and movement are influenced by D⁴ values; mouse interaction repels nodes, simulating a living mesh. |
 | 3 | **PSP‑144 LLM Proxy Failover** | `proxy.php` provides a unified gateway to 10+ LLM providers (Claude, GPT‑4o, Gemini, Grok, DeepSeek, Perplexity, Copilot, Nova, Meta, zAI). Every prompt is automatically prefixed with the PSP‑144 system context. Supports automatic failover across providers. |
 | 4 | **Modular PHP Router** | `index.php` implements a clean routing system (`?page=hub`, `crucible`, …) with session handling and component‑based includes. New pages can be added by dropping a file in `pages/` and updating the `$valid_pages` array. |
 | 5 | **Orbitron Reactive Shaders** | CSS variables (`ghost-mesh.css`) define a cosmic‑dark palette, neon glows, and panel effects. Typography uses Orbitron, Rajdhani, and Share Tech Mono. Panels react to hover with animated borders and glows. |
-| 6 | **WebRTC P2P Node Bar** | The top‑bar (`components/node-bar.php`) displays live peer counts (data from `get_active_nodes()`) with simulated WebRTC stats (latency, status). Node cards show individual node D³ influence. |
+| 6 | **WebRTC P2P Node Bar** | The top‑bar (`components/node-bar.php`) displays live peer counts (data from `get_active_nodes()`) with simulated WebRTC stats (latency, status). Node cards show individual node D⁴ influence. |
 | 7 | **Drag Module Forge** | The intelligence modules grid is fully draggable with `drag-module.js`. Order is saved to `localStorage` and persists across page loads. |
 | 8 | **Axiom Multi‑Oracle** | The API constellation panel lists all configured providers. The “Quick Ask” feature (`api-bridge.js`) broadcasts a single prompt to all configured LLMs simultaneously, aggregating responses. |
 | 9 | **144 Shortcoming Tracker** | A dedicated page (`?page=shortcomings`) lists the 144 documented limitations of PSP‑144, dynamically generated from `php/config.php`. Each item has a status dot (open/resolved). |
@@ -69,27 +69,41 @@ Web-Dashboard/
 │   ├── panels.css            # Additional panel styles
 │   └── animations.css        # Keyframe animations (scanlines, shimmer, pulse)
 ├── js/
-│   ├── ghost-mesh.js         # Canvas animation engine with D³ influence
+│   ├── ghost-mesh.js         # Canvas animation engine with D⁴ influence
 │   ├── nodes.js              # Node click handler
 │   ├── api-bridge.js         # Client‑side API calls (Quick Ask)
-│   ├── d3-triadic.js         # D³ chart updates & live metrics
+│   ├── d3-triadic.js         # D⁴ chart updates & live metrics
 │   ├── animations.js         # Scroll reveals, etc.
 │   └── drag-module.js        # Drag‑and‑drop module reordering
 ├── blueprints/               # Design documents for future upgrades
 │   ├── Unified Cognition Framework (UCF) – Quantum-Enhanced Integration Blueprint.md
 │   ├── hybrid XML and Spreadsheet architecture.md
 │   └── XML-QNVM-Chain_of_insights.md
+├── xml/                       # XML skeleton – immutable framework axioms, equations, functions
+│   ├── psp144_core.xml
+│   ├── psp144_axes.xml
+│   ├── psp144_equations.xml
+│   ├── psp144_functions.xml
+│   ├── psp144_clinical_mapping.xml
+│   └── psp144_shortcomings_solutions.xml
+├── csv/                       # CSV flesh – parametric data (clinical norms, archetypes, forcing)
+│   ├── clinical_mapping.csv
+│   ├── age_norms.csv
+│   ├── env_forcing.csv
+│   └── archetypes.csv
 └── README.md                 # This file
 ```
 
 **Key Components**
 
-- **hub.php** – The main dashboard view. Contains the hero section, D³ axis panels (each with a live sparkline), active nodes grid, draggable feature modules, and API constellation.
+- **hub.php** – The main dashboard view. Contains the hero section, D⁴ axis panels (each with a live sparkline), active nodes grid, draggable feature modules, and API constellation.
 - **proxy.php** – Accepts POST requests with `{provider, prompt, api_key, model, failover}` and forwards them to the respective LLM endpoint. Returns JSON. Supports automatic failover.
-- **ghost-mesh.js** – Self‑contained canvas animation. Nodes are initialised with D³ influence (`pVal`, `bVal`) that biases their colour. Connections use interpolated gradients; mouse repels nodes.
-- **d3-triadic.js** – Fetches live D³ metrics (simulated random walk) every 3 seconds, updates displayed values, bar widths, polytope stats, and the three sparkline charts. Also updates Ghost Mesh colours.
+- **ghost-mesh.js** – Self‑contained canvas animation. Nodes are initialised with D⁴ influence (`pVal`, `bVal`) that biases their colour. Connections use interpolated gradients; mouse repels nodes.
+- **d3-triadic.js** – Fetches live D⁴ metrics (simulated random walk) every 3 seconds, updates displayed values, bar widths, polytope stats, and the three sparkline charts. Also updates Ghost Mesh colours.
 - **api-bridge.js** – Handles “Quick Ask”: collects all configured API keys from `localStorage`, sends parallel requests to `proxy.php`, displays results. Keys never stored on server.
 - **drag-module.js** – Enables drag‑and‑drop reordering of intelligence modules. Order saved to `localStorage` and persists.
+- **xml/** – The immutable skeleton of the framework: axioms, axes definitions, equations, function signatures, clinical mappings, and shortcomings‑solutions mapping. These files are parsed by future simulation engines (e.g., the QNVM) to generate runtime behaviour.
+- **csv/** – The flexible flesh: parametric data that can be updated without changing code. Includes clinical state coordinates, age‑normed baselines, environmental forcing functions, and archetype seeds for entity simulations.
 
 ---
 
@@ -193,7 +207,7 @@ while (count($PSP144_SHORTCOMINGS) < 144) {
 ### Navigating the Hub
 
 - **Hero section** – Displays the Coherence Polytope visualisation and key metrics. Use **Enter Crucible** and **Configure APIs** to navigate.
-- **D³ Axis Panels** – Each panel shows a current value, percentage bar, description, and live sparkline. Values update every 3 seconds.
+- **D⁴ Axis Panels** – Each panel shows a current value, percentage bar, description, and live sparkline. Values update every 3 seconds.
 - **Active Nodes** – Lists P2P nodes from `get_active_nodes()`. Click a node card to see details (future enhancement).
 - **Intelligence Modules** – Drag any module card to reorder. Click “LAUNCH” to navigate (page routing not fully implemented; buttons currently visual).
 - **API Constellation** – Configured providers show a green dot. The **Quick Ask** input sends your question to all configured LLMs and displays responses.
@@ -261,11 +275,11 @@ const CONFIG = {
 };
 ```
 
-To integrate real D³ data, modify the `createNode` function to use actual `pVal` and `bVal` from your backend, and update node colours accordingly. The `updateD3Metrics` method can be called to refresh the swarm based on new metrics.
+To integrate real D⁴ data, modify the `createNode` function to use actual `pVal` and `bVal` from your backend, and update node colours accordingly. The `updateD3Metrics` method can be called to refresh the swarm based on new metrics.
 
 ---
 
-## ✧ Roadmap to v2.0 – Quantum‑Enhanced Cognition Manifold
+## ✧ Roadmap to v3.0 – Quantum‑Enhanced Cognition Manifold
 
 The next major release will realise the **D⁴‑QNVM** (Quantum Neural Virtual Machine) as a fully integrated simulation engine, driven by the hybrid XML/CSV data architecture outlined in the blueprints. Key upgrades:
 
@@ -319,7 +333,7 @@ The module will automatically appear with the appropriate hover style and button
 
 Manual verification steps:
 
-- **D³ updates**: Open browser console and watch for `fetchD3Metrics` every 3 seconds. Sparklines should update.
+- **D⁴ updates**: Open browser console and watch for `fetchD3Metrics` every 3 seconds. Sparklines should update.
 - **Quick Ask**: Enter a prompt and check that results appear (even with dummy keys you should see error cards).
 - **Drag & drop**: Reorder modules and refresh – order should persist.
 - **Node bar**: Observe peer count, status, and latency changes every 5 seconds.
@@ -338,7 +352,7 @@ This project is part of the Unified Cognition Framework and is released under th
 ## ✦ Related Resources
 
 - [Full PSP‑144 Framework Document (v1.5)](docs/The%20Psychics%20Protocol%20Framework%20v1.5%20(PSP-144_NQVP-144).md) – Theoretical foundation and mathematical formalisms.
-- [Comprehensive Shortcomings Analysis](docs/v1.0_shortcomings.md) – 96 identified gaps guiding v2.0 development.
+- [Comprehensive Shortcomings Analysis](docs/v1.0_shortcomings.md) – 96 identified gaps guiding v3.0 development.
 - [Ghost Mesh Main Repository](https://github.com/GhostMeshIO/UnifiedCognitionFramework) – The parent repository containing other components (e.g., Python core, mobile clients, simulation engine).
 
 ---
