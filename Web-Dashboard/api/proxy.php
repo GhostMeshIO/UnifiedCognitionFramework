@@ -1,5 +1,5 @@
 <?php
-// PSP-144 API Proxy — Multi-LLM Bridge
+// PSP-144 API Proxy — Multi-LLM Bridge with Failover
 // Routes requests to GPT/Claude/Gemini/Grok/DeepSeek/Perplexity/Copilot/Nova/Meta/zAI
 
 header('Access-Control-Allow-Origin: *');
@@ -21,6 +21,7 @@ $prompt   = $body['prompt'] ?? '';
 $apiKey   = $body['api_key'] ?? '';
 $context  = $body['context'] ?? PSP144_SYSTEM_PROMPT;
 $model    = $body['model'] ?? null;
+$failover = $body['failover'] ?? false; // if true, try next provider on failure
 
 if (empty($prompt)) {
     echo json_encode(['error' => 'No prompt provided']); exit;
@@ -29,14 +30,39 @@ if (empty($prompt)) {
 // PSP-144 context injection
 $fullPrompt = "FRAMEWORK CONTEXT: PSP-144 NQVP v2.0 — D3 Triadic State Space (Precision/Boundary/Temporal axes)\n\n" . $prompt;
 
-$result = route_to_provider($provider, $fullPrompt, $apiKey, $context, $model);
-echo json_encode($result);
+// If failover is requested, we try a list of providers in order
+if ($failover) {
+    $providers = ['claude', 'gpt', 'gemini', 'grok', 'deepseek', 'perplexity', 'copilot', 'nova', 'meta', 'zai'];
+    // Shuffle for load balancing? Or keep priority order.
+    // We'll keep order but skip the requested provider? Actually we start with the requested one.
+    $index = array_search($provider, $providers);
+    if ($index === false) $index = 0;
+    $tried = [];
+    for ($i = $index; $i < count($providers); $i++) {
+        $p = $providers[$i];
+        if (in_array($p, $tried)) continue;
+        $tried[] = $p;
+        $result = route_to_provider($p, $fullPrompt, $apiKey, $context, $model);
+        if (!isset($result['error'])) {
+            $result['failover_tried'] = $tried;
+            echo json_encode($result);
+            exit;
+        }
+        // Optionally log failure
+    }
+    // All failed
+    echo json_encode(['error' => 'All providers failed', 'tried' => $tried]);
+    exit;
+} else {
+    $result = route_to_provider($provider, $fullPrompt, $apiKey, $context, $model);
+    echo json_encode($result);
+}
 
 // ── Provider Router ─────────────────────────────────────────────────────────
 
 function route_to_provider(string $provider, string $prompt, string $apiKey, string $context, ?string $model): array {
     return match($provider) {
-        'claude'     => call_claude($prompt, $apiKey, $context, $model ?? 'claude-opus-4-6'),
+        'claude'     => call_claude($prompt, $apiKey, $context, $model ?? 'claude-3-opus-20240229'),
         'gpt'        => call_openai($prompt, $apiKey, $context, $model ?? 'gpt-4o'),
         'gemini'     => call_gemini($prompt, $apiKey, $context, $model ?? 'gemini-1.5-pro'),
         'grok'       => call_xai($prompt, $apiKey, $context, $model ?? 'grok-beta'),
