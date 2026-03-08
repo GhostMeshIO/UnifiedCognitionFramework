@@ -1,3 +1,16 @@
+/* Scroll reveal animations */
+const reveals = document.querySelectorAll('.reveal');
+function checkReveal() {
+  for (let el of reveals) {
+    const windowHeight = window.innerHeight;
+    const revealTop = el.getBoundingClientRect().top;
+    const revealPoint = 150;
+    if (revealTop < windowHeight - revealPoint) el.classList.add('active');
+  }
+}
+window.addEventListener('scroll', checkReveal);
+checkReveal();
+
 /* Reactive shaders and animations */
 @keyframes scanline {
   0% { transform: translateY(-100%); }
@@ -42,3 +55,5 @@
 .glow-text-cyan:hover {
   text-shadow: 0 0 20px rgba(0,255,255,0.8), 0 0 40px rgba(0,255,255,0.4);
 }
+
+
