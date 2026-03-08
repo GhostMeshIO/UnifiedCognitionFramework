@@ -1,24 +1,21 @@
 <?php
-// PSP-144 NQVP Framework — Master Router
+// PSP-144 NQVP Framework — Master Router (v2.0)
 define('PSP144_ROOT', __DIR__);
 define('PSP144_VERSION', '2.0');
 define('PSP144_TIMESTAMP', time());
 
 session_start();
 
-// Page routing
 $page = isset($_GET['page']) ? preg_replace('/[^a-z0-9_-]/', '', $_GET['page']) : 'hub';
 $valid_pages = ['hub', 'crucible', 'nexus', 'community', 'api-forge', 'axioms', 'shortcomings', 'ar-veil'];
 if (!in_array($page, $valid_pages)) $page = 'hub';
 
-// API proxy handler
 if (isset($_GET['api'])) {
     header('Content-Type: application/json');
     require_once PSP144_ROOT . '/api/proxy.php';
     exit;
 }
 
-// Load components
 require_once PSP144_ROOT . '/php/config.php';
 require_once PSP144_ROOT . '/php/nodes.php';
 ?>
@@ -29,39 +26,22 @@ require_once PSP144_ROOT . '/php/nodes.php';
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="PSP-144 Neuro-Quantum Validation Protocol — Hyper-Correlational Intelligence Framework"/>
   <title>PSP-144 · NQVP · Hyper-Correlation Sovereign Hub</title>
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
-
-  <!-- Core Styles -->
   <link rel="stylesheet" href="css/ghost-mesh.css"/>
   <link rel="stylesheet" href="css/nodes.css"/>
   <link rel="stylesheet" href="css/panels.css"/>
   <link rel="stylesheet" href="css/animations.css"/>
-
-  <!-- Page-specific styles injected via PHP -->
   <?php
-  $page_styles = [
-    'ar-veil' => '<link rel="stylesheet" href="css/ar-veil.css"/>',
-    // add others as needed
-  ];
+  $page_styles = ['ar-veil' => '<link rel="stylesheet" href="css/ar-veil.css"/>'];
   echo $page_styles[$page] ?? '';
   ?>
 </head>
 <body class="ghost-mesh-body" data-node-count="0">
-
-  <!-- Neural Grid Background -->
   <div class="neural-grid" id="neuralGrid" aria-hidden="true"></div>
   <canvas id="ghostMeshCanvas" aria-hidden="true"></canvas>
-
-  <!-- Sovereign Header -->
   <?php require_once PSP144_ROOT . '/components/header.php'; ?>
-
-  <!-- P2P Node Status Bar (WebRTC enabled) -->
   <?php require_once PSP144_ROOT . '/components/node-bar.php'; ?>
-
-  <!-- Main Content Router -->
   <main class="sovereign-main" id="mainContent">
     <?php
     $page_file = PSP144_ROOT . '/pages/' . $page . '.php';
@@ -72,14 +52,8 @@ require_once PSP144_ROOT . '/php/nodes.php';
     }
     ?>
   </main>
-
-  <!-- Sovereign Footer -->
   <?php require_once PSP144_ROOT . '/components/footer.php'; ?>
-
-  <!-- API Modal Overlay -->
   <?php require_once PSP144_ROOT . '/components/api-modal.php'; ?>
-
-  <!-- Core Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script src="js/ghost-mesh.js" defer></script>
   <script src="js/nodes.js" defer></script>
@@ -88,7 +62,6 @@ require_once PSP144_ROOT . '/php/nodes.php';
   <script src="js/animations.js" defer></script>
   <script src="js/drag-module.js" defer></script>
   <script>
-    // Global PSP144 config passed from PHP
     window.PSP144 = {
       version: '<?= PSP144_VERSION ?>',
       page: '<?= htmlspecialchars($page) ?>',
