@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psp144_framework version="1.5" status="Empirically Hardened | Ethically Bounded">
+  <identity>
+    <designation>PSP-144 / NQVP-144</designation>
+    <core_thesis>What manifests as "psychic" experience is the brain's high-bandwidth detection, processing, and transfer of weak correlations operating below conscious threshold.</core_thesis>
+    <fundamental_constraints>
+      <constraint name="Physical Channel"/>
+      <constraint name="Shannon Capacity"/>
+      <constraint name="Metabolic Cost"/>
+      <constraint name="Coherence Polytope"/>
+    </fundamental_constraints>
+  </identity>
+  <imports>
+    <import file="psp144_axes.xml"/>
+    <import file="psp144_equations.xml"/>
+    <import file="psp144_functions.xml"/>
+    <import file="psp144_clinical_mapping.xml"/>
+    <import file="psp144_shortcomings_solutions.xml"/>
+  </imports>
+</psp144_framework>
