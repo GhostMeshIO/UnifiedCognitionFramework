@@ -15,7 +15,6 @@ $PSP144_APIS = [
     'zai'       => ['name' => 'z.ai',       'icon' => '⚡', 'color' => '#f5c542'],
 ];
 
-// Synthetic node generator for demo
 function get_active_nodes() {
     $nodes = [];
     for ($i = 0; $i < rand(5, 12); $i++) {
@@ -47,7 +46,6 @@ function get_d3_metrics() {
     ];
 }
 
-// List of 144 shortcomings (truncated here for brevity)
 $PSP144_SHORTCOMINGS = [
     '1. Lack of high-resolution laminar fMRI validation.',
     '2. Insufficient normative data for D³ axes across cultures.',
