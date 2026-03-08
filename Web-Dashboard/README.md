@@ -3,9 +3,10 @@
 **Part of the [Unified Cognition Framework](https://github.com/GhostMeshIO/UnifiedCognitionFramework)**  
 *Hyper-Correlation Intelligence Interface*
 
-> ✅ **All files have been revised and enhanced to satisfy the 12 directives, with full implementation of API bridge, secure key management, real D³ charts, WebRTC simulation, drag module forge, and comprehensive documentation.**
+> **Current Status:** v1.5 – Empirically hardened, dimensionally consistent, ethically bounded.  
+> **Next Release:** v2.0 – Quantum‑Enhanced Cognition Manifold (D⁴‑QNVM) with self‑healing XML/CSV architecture and real‑time environmental forcing.
 
-The Web Dashboard is the primary real‑time visualization and control interface for the **Neuro‑Quantum Validation Protocol (NQVP‑144)**. It translates the dense theoretical constructs of the [Psychics Protocol Framework](The%20Psychics%20Protocol%20Framework%20v1.0%20(PSP-144_NQVP-144)%20An%20Exhaustive%20Research%20Architecture%20for%20Hyper-Correlational%20Information%20Processing.md) into a live operational console. Here you can monitor the D³ Triadic State Space (Precision, Boundary, Temporal), observe the Ghost Mesh P2P network, query a constellation of LLMs, and explore intelligence modules – all within a cosmic‑dark aesthetic driven by reactive shaders and autonomous swarm animations.
+The Web Dashboard is the primary real‑time visualization and control interface for the **Neuro‑Quantum Validation Protocol (NQVP‑144)**. It translates the dense theoretical constructs of the [Psychics Protocol Framework](docs/The%20Psychics%20Protocol%20Framework%20v1.5%20(PSP-144_NQVP-144).md) into a live operational console. Here you can monitor the D³ Triadic State Space (Precision, Boundary, Temporal), observe the Ghost Mesh P2P network, query a constellation of LLMs, and explore intelligence modules – all within a cosmic‑dark aesthetic driven by reactive shaders and autonomous swarm animations.
 
 ---
 
@@ -25,6 +26,21 @@ The Web Dashboard is the primary real‑time visualization and control interface
 | 10 | **AR Camera Veil** | A placeholder page (`?page=ar-veil`) for future augmented reality integration, with a disabled button ready for WebXR. |
 | 11 | **Temporal Flux Chain** | The Temporal axis panel includes a live sparkline chart (`d3-triadic.js`) showing historical trends (20 data points) updated every 3 seconds. |
 | 12 | **Hive Coherence Meter** | The polytope stats area shows mesh coherence percentage and spectral radius – a live meter of collective network stability across the Ghost Mesh. |
+
+---
+
+## ✧ Theoretical Foundation
+
+The dashboard operationalizes the **Unified Cognition Framework (UCF)** and its **Psychics Protocol (PSP‑144)** extensions. At its core lies the **D⁴ state space**:
+
+- **Precision (𝒫)** – neurocomputational gain on sensory signals.
+- **Boundary (ℬ)** – functional separation between self and world.
+- **Temporal (𝒯)** – orientation toward past or future.
+- **Autonomic (ANS)** – polyvagal state (ventral vagal, sympathetic, dorsal vagal).
+
+These axes are linked to **neural criticality** (spectral radius ρ), **inter‑agent coherence** (PLV, MI), and **neurometabolic constraints** (allostatic load, astrocytic noise). All measurements are dimensionally consistent and falsifiable, with 144 accompanying Python functions (see `nqvp144` library).
+
+The dashboard itself is a **living embodiment** of the framework – each chart, node, and API call instantiates a core equation or axiom, turning theory into interactive reality.
 
 ---
 
@@ -59,6 +75,10 @@ Web-Dashboard/
 │   ├── d3-triadic.js         # D³ chart updates & live metrics
 │   ├── animations.js         # Scroll reveals, etc.
 │   └── drag-module.js        # Drag‑and‑drop module reordering
+├── blueprints/               # Design documents for future upgrades
+│   ├── Unified Cognition Framework (UCF) – Quantum-Enhanced Integration Blueprint.md
+│   ├── hybrid XML and Spreadsheet architecture.md
+│   └── XML-QNVM-Chain_of_insights.md
 └── README.md                 # This file
 ```
 
@@ -245,6 +265,21 @@ To integrate real D³ data, modify the `createNode` function to use actual `pVal
 
 ---
 
+## ✧ Roadmap to v2.0 – Quantum‑Enhanced Cognition Manifold
+
+The next major release will realise the **D⁴‑QNVM** (Quantum Neural Virtual Machine) as a fully integrated simulation engine, driven by the hybrid XML/CSV data architecture outlined in the blueprints. Key upgrades:
+
+- **XML Skeleton** – `psp144_core.xml`, `psp144_axes.xml`, `psp144_equations.xml` define immutable axioms, equations, and function signatures.
+- **CSV Flesh** – `clinical_mapping.csv`, `archetypes.csv`, `env_forcing.csv` provide parametric data for clinical states, entity archetypes, and environmental modulators (lunar, geomagnetic, circadian).
+- **Quantum Circuit Cognition** – Each entity’s cognitive cascade (detection → amplification → transport → decoding) will be executed as a quantum gate sequence on the QNVM, with precision‑boundary entanglement and conduction‑corrected PLV.
+- **Real‑time Environmental Forcing** – Live NOAA/Kp data will modulate spectral radius and noise floor, linking dashboard visuals to planetary geomagnetic activity.
+- **Metabolic Constraints** – Allostatic load and astrocytic noise will affect entity survival and reproduction, simulating the cost of sustained hyper‑correlational processing.
+- **Sovereign Gate Audits** – Entities that pass all six UCF gates will be flagged as “sovereign”, contributing to a meta‑evolutionary registry.
+
+The dashboard will become a **computable cognition manifold** – a sandbox where theoretical predictions (e.g., “high‑P + low‑B dyads produce pathological coupling”) can be tested in silico before human experiments.
+
+---
+
 ## ✦ Extending the Framework
 
 ### Adding a New Page
@@ -302,8 +337,9 @@ This project is part of the Unified Cognition Framework and is released under th
 
 ## ✦ Related Resources
 
-- [Full PSP‑144 Framework Document](The%20Psychics%20Protocol%20Framework%20v1.0%20(PSP-144_NQVP-144)%20An%20Exhaustive%20Research%20Architecture%20for%20Hyper-Correlational%20Information%20Processing.md) – Theoretical foundation and mathematical formalisms.
-- [Ghost Mesh Main Repository](https://github.com/GhostMeshIO/UnifiedCognitionFramework) – The parent repository containing other components (e.g., Python core, mobile clients).
+- [Full PSP‑144 Framework Document (v1.5)](docs/The%20Psychics%20Protocol%20Framework%20v1.5%20(PSP-144_NQVP-144).md) – Theoretical foundation and mathematical formalisms.
+- [Comprehensive Shortcomings Analysis](docs/v1.0_shortcomings.md) – 96 identified gaps guiding v2.0 development.
+- [Ghost Mesh Main Repository](https://github.com/GhostMeshIO/UnifiedCognitionFramework) – The parent repository containing other components (e.g., Python core, mobile clients, simulation engine).
 
 ---
 
