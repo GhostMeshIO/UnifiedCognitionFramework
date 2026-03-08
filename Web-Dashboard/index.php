@@ -8,7 +8,7 @@ session_start();
 
 // Page routing
 $page = isset($_GET['page']) ? preg_replace('/[^a-z0-9_-]/', '', $_GET['page']) : 'hub';
-$valid_pages = ['hub', 'crucible', 'nexus', 'community', 'api-forge', 'axioms', 'shortcomings'];
+$valid_pages = ['hub', 'crucible', 'nexus', 'community', 'api-forge', 'axioms', 'shortcomings', 'ar-veil'];
 if (!in_array($page, $valid_pages)) $page = 'hub';
 
 // API proxy handler
@@ -41,7 +41,13 @@ require_once PSP144_ROOT . '/php/nodes.php';
   <link rel="stylesheet" href="css/animations.css"/>
 
   <!-- Page-specific styles injected via PHP -->
-  <?php echo get_page_styles($page); ?>
+  <?php
+  $page_styles = [
+    'ar-veil' => '<link rel="stylesheet" href="css/ar-veil.css"/>',
+    // add others as needed
+  ];
+  echo $page_styles[$page] ?? '';
+  ?>
 </head>
 <body class="ghost-mesh-body" data-node-count="0">
 
@@ -52,7 +58,7 @@ require_once PSP144_ROOT . '/php/nodes.php';
   <!-- Sovereign Header -->
   <?php require_once PSP144_ROOT . '/components/header.php'; ?>
 
-  <!-- P2P Node Status Bar -->
+  <!-- P2P Node Status Bar (WebRTC enabled) -->
   <?php require_once PSP144_ROOT . '/components/node-bar.php'; ?>
 
   <!-- Main Content Router -->
@@ -74,11 +80,13 @@ require_once PSP144_ROOT . '/php/nodes.php';
   <?php require_once PSP144_ROOT . '/components/api-modal.php'; ?>
 
   <!-- Core Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script src="js/ghost-mesh.js" defer></script>
   <script src="js/nodes.js" defer></script>
   <script src="js/api-bridge.js" defer></script>
   <script src="js/d3-triadic.js" defer></script>
   <script src="js/animations.js" defer></script>
+  <script src="js/drag-module.js" defer></script>
   <script>
     // Global PSP144 config passed from PHP
     window.PSP144 = {
@@ -86,7 +94,10 @@ require_once PSP144_ROOT . '/php/nodes.php';
       page: '<?= htmlspecialchars($page) ?>',
       timestamp: <?= PSP144_TIMESTAMP ?>,
       apiEndpoint: '?api=1',
-      nodes: <?= json_encode(get_active_nodes()) ?>
+      nodes: <?= json_encode(get_active_nodes()) ?>,
+      d3_metrics: <?= json_encode($d3_metrics ?? get_d3_metrics()) ?>,
+      polytope_h: <?= $polytope_h ?? 0.73 ?>,
+      mesh_coh: <?= $mesh_coh ?? 81.4 ?>
     };
   </script>
 </body>
