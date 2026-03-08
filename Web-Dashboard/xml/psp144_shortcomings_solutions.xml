@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psp144_shortcomings_solutions>
+  <shortcoming id="S001" description="Lack of high-resolution laminar fMRI validation.">
+    <solution id="S1" description="7T laminar fMRI protocol with CSD analysis." status="proposed"/>
+  </shortcoming>
+  <!-- ... -->
+</psp144_shortcomings_solutions>
