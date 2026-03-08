@@ -51,15 +51,15 @@ $feature_modules = [
       <div class="polytope-stats">
         <div class="polytope-stat">
           <span class="text-dim" style="font-size:0.65rem;font-family:var(--font-mono)">H_POLYTOPE</span>
-          <span class="polytope-stat-val text-cyan"><?= $polytope_h ?></span>
+          <span class="polytope-stat-val text-cyan" id="polytopeH"><?= $polytope_h ?></span>
         </div>
         <div class="polytope-stat">
           <span class="text-dim" style="font-size:0.65rem;font-family:var(--font-mono)">MESH COH.</span>
-          <span class="polytope-stat-val text-purple"><?= $mesh_coh ?>%</span>
+          <span class="polytope-stat-val text-purple" id="meshCoh"><?= $mesh_coh ?>%</span>
         </div>
         <div class="polytope-stat">
           <span class="text-dim" style="font-size:0.65rem;font-family:var(--font-mono)">ρ SPECTRAL</span>
-          <span class="polytope-stat-val text-amber">0.89</span>
+          <span class="polytope-stat-val text-amber" id="spectralRho">0.89</span>
         </div>
       </div>
     </div>
@@ -74,14 +74,14 @@ $feature_modules = [
 
   <div class="grid-3 reveal reveal-delay-2">
     <!-- Precision Axis -->
-    <div class="panel d3-axis-panel scan-line">
+    <div class="panel d3-axis-panel scan-line" id="precision-panel">
       <div class="axis-header">
         <span class="axis-label axis-label-p">𝒫 PRECISION</span>
-        <span class="axis-value glow-text-cyan"><?= $d3_metrics['precision']['value'] ?></span>
+        <span class="axis-value glow-text-cyan" id="precision-val"><?= $d3_metrics['precision']['value'] ?></span>
         <span class="text-mono text-dim" style="font-size:0.65rem"><?= $d3_metrics['precision']['unit'] ?></span>
       </div>
       <div class="bar-track mt-2 mb-3">
-        <div class="bar-fill bar-fill-cyan axis-bar-animated" style="width:<?= $d3_metrics['precision']['pct'] ?>%"></div>
+        <div class="bar-fill bar-fill-cyan axis-bar-animated" id="precision-bar" style="width:<?= $d3_metrics['precision']['pct'] ?>%"></div>
       </div>
       <div class="axis-info">
         <p class="text-muted" style="font-size:0.78rem;line-height:1.6">
@@ -98,14 +98,14 @@ $feature_modules = [
     </div>
 
     <!-- Boundary Axis -->
-    <div class="panel panel-purple d3-axis-panel scan-line">
+    <div class="panel panel-purple d3-axis-panel scan-line" id="boundary-panel">
       <div class="axis-header">
         <span class="axis-label axis-label-b">ℬ BOUNDARY</span>
-        <span class="axis-value glow-text-purple"><?= $d3_metrics['boundary']['value'] ?></span>
+        <span class="axis-value glow-text-purple" id="boundary-val"><?= $d3_metrics['boundary']['value'] ?></span>
         <span class="text-mono text-dim" style="font-size:0.65rem"><?= $d3_metrics['boundary']['unit'] ?></span>
       </div>
       <div class="bar-track mt-2 mb-3">
-        <div class="bar-fill bar-fill-purple axis-bar-animated" style="width:<?= $d3_metrics['boundary']['pct'] ?>%"></div>
+        <div class="bar-fill bar-fill-purple axis-bar-animated" id="boundary-bar" style="width:<?= $d3_metrics['boundary']['pct'] ?>%"></div>
       </div>
       <div class="axis-info">
         <p class="text-muted" style="font-size:0.78rem;line-height:1.6">
@@ -122,14 +122,14 @@ $feature_modules = [
     </div>
 
     <!-- Temporal Axis -->
-    <div class="panel d3-axis-panel">
+    <div class="panel d3-axis-panel" id="temporal-panel">
       <div class="axis-header">
         <span class="axis-label axis-label-t">𝒯 TEMPORAL</span>
-        <span class="axis-value" style="color:var(--axis-t);text-shadow:0 0 10px rgba(245,158,11,0.6)"><?= $d3_metrics['temporal']['value'] ?></span>
+        <span class="axis-value" id="temporal-val" style="color:var(--axis-t);text-shadow:0 0 10px rgba(245,158,11,0.6)"><?= $d3_metrics['temporal']['value'] ?></span>
         <span class="text-mono text-dim" style="font-size:0.65rem"><?= $d3_metrics['temporal']['unit'] ?></span>
       </div>
       <div class="bar-track mt-2 mb-3">
-        <div class="bar-fill bar-fill-amber axis-bar-animated" style="width:<?= $d3_metrics['temporal']['pct'] ?>%"></div>
+        <div class="bar-fill bar-fill-amber axis-bar-animated" id="temporal-bar" style="width:<?= $d3_metrics['temporal']['pct'] ?>%"></div>
       </div>
       <div class="axis-info">
         <p class="text-muted" style="font-size:0.78rem;line-height:1.6">
@@ -141,7 +141,10 @@ $feature_modules = [
           <span class="range-opt" style="color:var(--axis-t)">Balanced 0</span>
           <span class="range-high">Future +3</span>
         </div>
-        <div class="axis-mini-chart" id="temporalChart"></div>
+        <div class="axis-mini-chart" id="temporalChart">
+          <!-- Temporal Flux Chain will be rendered here by d3-triadic.js -->
+          <canvas id="temporalFluxCanvas" width="200" height="40"></canvas>
+        </div>
       </div>
     </div>
   </div>
@@ -150,25 +153,25 @@ $feature_modules = [
   <div class="section-header reveal mt-6">
     <h2>Ghost Mesh · Active Nodes</h2>
     <div class="section-divider"></div>
-    <span class="text-mono text-dim" style="font-size:0.65rem"><?= count($nodes) ?> nodes / P2P</span>
+    <span class="text-mono text-dim" style="font-size:0.65rem" id="node-count"><?= count($nodes) ?> nodes / P2P</span>
   </div>
 
-  <div class="grid-3 stagger-grid">
+  <div class="grid-3 stagger-grid" id="node-grid">
     <?php foreach ($nodes as $node):
       echo render_node_card($node);
     endforeach; ?>
   </div>
 
-  <!-- ── Feature Modules Grid ──────────────────────────────────── -->
+  <!-- ── Feature Modules Grid (Drag Module Forge) ──────────────────── -->
   <div class="section-header reveal mt-6">
     <h2>Intelligence Modules</h2>
     <div class="section-divider"></div>
     <span class="tag tag-purple">24 FEATURES</span>
   </div>
 
-  <div class="grid-4 stagger-grid module-grid">
+  <div class="grid-4 stagger-grid module-grid" id="module-grid">
     <?php foreach ($feature_modules as $mod): ?>
-    <div class="module-card <?= 'module-' . $mod['color'] ?>" data-module="<?= $mod['id'] ?>">
+    <div class="module-card <?= 'module-' . $mod['color'] ?>" data-module="<?= $mod['id'] ?>" draggable="true">
       <div class="module-icon"><?= $mod['icon'] ?></div>
       <div class="module-body">
         <h3 class="module-title"><?= htmlspecialchars($mod['title']) ?></h3>
@@ -181,7 +184,7 @@ $feature_modules = [
     <?php endforeach; ?>
   </div>
 
-  <!-- ── API Status Panel ───────────────────────────────────────── -->
+  <!-- ── API Status Panel (Axiom Multi‑Oracle) ───────────────────────── -->
   <div class="section-header reveal mt-6">
     <h2>API Constellation</h2>
     <div class="section-divider"></div>
@@ -290,10 +293,12 @@ $feature_modules = [
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  cursor: pointer;
+  cursor: grab;
   transition: all 0.25s;
   border: 1px solid rgba(0,255,255,0.1);
 }
+.module-card:active { cursor: grabbing; }
+.module-card.dragging { opacity: 0.5; }
 .module-cyan:hover  { border-color: rgba(0,255,255,0.4); box-shadow: var(--glow-cyan); }
 .module-purple:hover { border-color: rgba(168,85,247,0.4); box-shadow: var(--glow-purple); }
 .module-amber:hover { border-color: rgba(245,158,11,0.3); box-shadow: 0 0 15px rgba(245,158,11,0.2); }
