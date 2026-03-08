@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psp144_clinical_mapping>
+  <clinical_state name="Healthy Control">
+    <p_range>0.8 to 1.2</p_range>
+    <b_range>1.0 to 1.5</b_range>
+    <t_range>-0.5 to +0.5</t_range>
+    <ans_profile>PVI > 0</ans_profile>
+    <phenomenology>Baseline social cognition.</phenomenology>
+  </clinical_state>
+  <!-- ... -->
+</psp144_clinical_mapping>
