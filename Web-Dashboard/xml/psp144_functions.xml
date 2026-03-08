@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psp144_functions>
+  <function id="func_4" name="compute_phase_locking_value" language="python">
+    <inputs><param name="signal_a" type="np.array"/><param name="signal_b" type="np.array"/></inputs>
+    <outputs><param name="plv_corrected" type="float"/></outputs>
+    <implements_equation ref="eq_3_6"/>
+  </function>
+  <!-- ... -->
+</psp144_functions>
