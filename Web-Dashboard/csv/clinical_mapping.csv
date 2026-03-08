@@ -1,0 +1,4 @@
+State_Name,P_Range_Min,P_Range_Max,B_Range_Min,B_Range_Max,T_Range_Min,T_Range_Max,ANS_Profile,Phenomenology
+Healthy Control,0.8,1.2,1.0,1.5,-0.5,0.5,"PVI > 0","Baseline social cognition."
+Acute Mania,1.8,2.4,0.4,0.8,1.5,3.0,"High Sympathetic","Grandiose cosmic revelations."
+...
