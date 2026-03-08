@@ -1,6 +1,6 @@
 /**
  * PSP-144 Ghost Mesh Canvas
- * Animated P2P node network visualization
+ * Animated P2P node network visualization with D3 influence
  */
 (function() {
   'use strict';
@@ -22,6 +22,14 @@
     nodeMaxR:       4,
     lineMaxOpacity: 0.18,
     bgFade:         0.04,
+    d3Influence:    true, // use D3 metrics to color nodes
+  };
+
+  // Get D3 metrics from global PSP144 object
+  let d3Metrics = window.PSP144?.d3_metrics || {
+    precision: { value: 1.34 },
+    boundary: { value: 0.72 },
+    temporal: { value: 0.45 }
   };
 
   function resize() {
@@ -32,10 +40,14 @@
   function lerp(a, b, t) { return a + (b - a) * t; }
 
   function createNode() {
-    // Assign D3 coordinate influence
-    const pVal = 0.8 + Math.random() * 2.0;
-    const bVal = 0.2 + Math.random() * 1.8;
-    const colorMix = Math.random(); // 0=cyan, 1=purple
+    // Use D3 metrics to influence node color
+    const pVal = d3Metrics.precision.value;
+    const bVal = d3Metrics.boundary.value;
+    // Normalize pVal and bVal to 0-1 range (roughly)
+    const pNorm = Math.min(1, Math.max(0, (pVal - 0.8) / 1.6)); // 0.8-2.4 range
+    const bNorm = Math.min(1, Math.max(0, (bVal - 0.2) / 1.8)); // 0.2-2.0 range
+    // High P + Low B = cyan dominant
+    const colorMix = pNorm * (1 - bNorm); // 0 = purple, 1 = cyan
     return {
       x:      Math.random() * width,
       y:      Math.random() * height,
@@ -43,11 +55,13 @@
       vy:     (Math.random() - 0.5) * CONFIG.nodeSpeed,
       r:      CONFIG.nodeMinR + Math.random() * (CONFIG.nodeMaxR - CONFIG.nodeMinR),
       phase:  Math.random() * Math.PI * 2,
-      pVal,
-      bVal,
       colorMix,
-      // High P + Low B = cyan dominant
-      color: colorMix > bVal / 2 ? CONFIG.cyanColor : CONFIG.purpleColor,
+      // Interpolate between cyan and purple based on colorMix
+      color: [
+        lerp(CONFIG.purpleColor[0], CONFIG.cyanColor[0], colorMix),
+        lerp(CONFIG.purpleColor[1], CONFIG.cyanColor[1], colorMix),
+        lerp(CONFIG.purpleColor[2], CONFIG.cyanColor[2], colorMix)
+      ]
     };
   }
 
@@ -152,6 +166,10 @@
   });
 
   // Expose for external control
-  window.PSP144_GhostMesh = { nodes, config: CONFIG };
+  window.PSP144_GhostMesh = { nodes, config: CONFIG, updateD3Metrics: (metrics) => {
+    d3Metrics = metrics;
+    // Gradually update node colors? For now, re-init.
+    initNodes();
+  } };
 
 })();
